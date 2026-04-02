@@ -1,27 +1,25 @@
-[project]
+[tool.poetry]
 name = "my-browser-use"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "zhangjiaqi",email = "zhang.jia.qi.study@gmail.com"}
-]
-readme = "README.md"
-requires-python = ">=3.11,<4.0"
-dependencies = [
-    "browser-use (>=0.12.5,<0.13.0)"
-]
+description = "A browser automation project using selenium library"
+authors = ["Your Name <your.email@example.com>"]
 
-# 使用src布局的正确配置
-[[tool.poetry.packages]]
-include = "src"
+[tool.poetry.dependencies]
+python = "^3.11"
+browser-use = "^0.12.5"
+selenium = "^4.0.0"
+python-dotenv = "^1.0.0"
+openai = "^1.0.0"
+webdriver-manager = "^4.0.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^9.0.2"
+black = "^26.3.1"
+flake8 = "^7.3.0"
 
 [build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
+requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
-[dependency-groups]
-dev = [
-    "pytest (>=9.0.2,<10.0.0)",
-    "black (>=26.3.1,<27.0.0)",
-    "flake8 (>=7.3.0,<8.0.0)"
-]
+[tool.poetry.scripts]
+start = "src.main:main"

@@ -1,10 +1,9 @@
 import asyncio, base64, datetime
 from pathlib import Path
-from browser_use import Agent, Browser, Tools, ActionResult, ChatOpenAI,BrowserSession
+from browser_use import Agent, Browser, ActionResult, ChatOpenAI, BrowserSession, Controller
 from browser_use.browser.events import ScreenshotEvent
 from dotenv import load_dotenv
 import os
-import subprocess
 
 
 load_dotenv()  # 加载环境变量
@@ -14,15 +13,6 @@ SCREENSHOT_DIR.mkdir(exist_ok=True)
 
 # 全局浏览器实例，用于复用
 _GLOBAL_BROWSER_INSTANCE = None
-
-def close_chrome_processes():
-    """关闭所有 Chrome 进程，避免端口和文件锁定冲突"""
-    try:
-        subprocess.run(['taskkill', '/f', '/im', 'chrome.exe'], 
-                      capture_output=True, text=True, shell=True)
-        print("⏹️  已关闭所有 Chrome 进程")
-    except Exception as e:
-        print(f"ℹ️  关闭 Chrome 进程时出现警告: {e}")
 
 def create_llm():
     """创建并返回LLM实例"""
@@ -35,10 +25,10 @@ def create_llm():
     # return ChatBrowserUse()
 
 
-def create_tools():
-    tools = Tools()
+def create_controller():
+    controller = Controller()
 
-    @tools.action(description='等待人工完成扫码登录并切换到新打开的演示中心tab页')
+    @controller.action(description='等待人工完成扫码登录并切换到新打开的演示中心tab页')
     async def wait_for_human_login(browser_session: BrowserSession) -> ActionResult:
         input('\n⏸️ 请手动完成扫码登录并打开演示中心列表页，完成后按回车继续...')
         
@@ -56,7 +46,7 @@ def create_tools():
             extracted_content=f'已切换到演示中心列表页，当前URL: {current_url}，请在此页面继续执行任务'
         )
 
-    return tools
+    return controller
 
 
 
@@ -109,34 +99,21 @@ async def create_browser():
         print("🔄 复用已存在的浏览器实例")
         return _GLOBAL_BROWSER_INSTANCE
     
-    # 关闭现有 Chrome 进程以避免冲突
-    close_chrome_processes()
+    auth_file = 'auth.json'
     
-    # 直接使用系统 Chrome 的用户数据目录
-    try:
-        # 获取 Chrome 用户数据目录路径
-        result = subprocess.run(['powershell', '-Command', 'Write-Host $env:LOCALAPPDATA\\Google\\Chrome\\User Data'], 
-                              capture_output=True, text=True, shell=True)
-        user_data_dir = result.stdout.strip()
-        print(f"📁 使用 Chrome 用户数据目录: {user_data_dir}")
-        
-        _GLOBAL_BROWSER_INSTANCE = Browser(
-            channel='chrome',
-            user_data_dir=user_data_dir,
+    if not os.path.exists(auth_file):
+        print("🆕 首次运行，导出浏览器认证状态")
+        browser = Browser.from_system_chrome(
             enable_default_extensions=False,
-            headless=False  # 确保显示浏览器窗口
+             channel='msedge',
         )
-        await _GLOBAL_BROWSER_INSTANCE.start()
-        print("✅ 浏览器启动成功，使用完整的用户配置")
-    except Exception as e:
-        print(f"⚠️ 无法使用用户数据目录，回退到基本配置: {e}")
-        # 回退方案
-        _GLOBAL_BROWSER_INSTANCE = Browser(
-            channel='chrome',
-            enable_default_extensions=False,
-            headless=False
-        )
+        await browser.start()
+        await browser.export_storage_state(auth_file)
+        await browser.stop()
+    else:
+        print("📦 已存在认证文件，跳过导出")
     
+    _GLOBAL_BROWSER_INSTANCE = Browser( channel='msedge', ignore_default_args=['--extensions-on-chrome-urls'], storage_state=auth_file,enable_default_extensions=False)
     return _GLOBAL_BROWSER_INSTANCE
 
 def close_browser():
@@ -146,4 +123,3 @@ def close_browser():
         asyncio.run(_GLOBAL_BROWSER_INSTANCE.kill())
         _GLOBAL_BROWSER_INSTANCE = None
         print("🧹 浏览器实例已关闭")
-    

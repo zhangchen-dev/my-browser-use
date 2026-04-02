@@ -1,39 +1,5 @@
-import asyncio
-from components.agent import (
-    create_browser, 
-    close_browser
-)
-from components.test_runner import test_single_scenario
-from components.reporter import print_test_report
-
-async def main():
-    browser = await create_browser()
-    await browser.start()
-    # 遍历测试每个场景
-    demoSenceList = [
+demoSenceList = [
     'https://xft.cmbchina.com/omsapp/#/xft-demo?democode=input_invoice&token=eyJ0eXAiOiJKV1QiLCJhbGciOiJTTTNXaXRoU00yIn0.eyJleHAiOjE3NTU1NzQ2ODksImlhdCI6MTc1NTU2Mzg4OSwidG9rZW4iOiJ7XCJ1c2VyTmFtZVwiOlwi5byg5L2z55CqXCIsXCJwbGF0Zm9ybVVzZXJJZFwiOlwiMTAwMjI5NTFcIixcInNhcElkXCI6XCI4MDM4MDAzNFwiLFwib3JnYW5pemF0aW9uXCI6XCLmgLvooYwv5L-h5oGv5oqA5pyv6YOoL-a1i-ivleS4reW_gy_mibnlj5HkuJrliqHmtYvor5Xlm6LpmJ8v5Z-656GA5bmz5Y-w5byA5Y-R5LiJ5a6kKOaIkOmDvSkvXCIsXCJ0b2tlbklkXCI6bnVsbH0ifQ.RS3eXeSy4eqOeb3F_l6hrUK9hXUrM392M_GkUlehWvAU4gzEpuDH32bCHD9A39_twWFP-Wvmek2WJPfLU9x8Kw&xftToken=041C179428745A7D83B85035134D35585ACF8F0100EC7C56AFCA2D3CD8FF27D987D47878416B658048B94B5989240D8DCCFA5FD9592557B2AC2F0158B1DE4745F72965C7B521AAAEB5B61B829F9532ACCB79D15D10AE70AD3C2ED063B149624740770B2C4C8BEAA23B98E0F5C8012F675E763A485B814D75ABE1E4DF0ADB95B7C9A67EB4AE23FBC246C692A7307BA117A8F6214EC63E95B1C43CD289618F2CBAC00818B22A065C213D75A0E1EDADDA6D2FBE1C&cursessioncode=1755563889974-1755563909358&from=xft_page',
     'https://xft.cmbchina.com/omsapp/#/xft-trail?scenecode=outbound_invoice&xftToken=04F4CD92C479C9E06648C00866B0CCB7684734EE5443253A891DE5A1626BD2CB11597FA6C3670DCF6DBBED766BB18C32BB0C511E379F4D6A2E3B91D0989F638C218488E7681F8E988A6E192CB3FE59EA306BDD9C3331DB6AABCB5BADB318338C48AA958E8F33B7C23571B161E4635F496FEABD4B547B207C8F630F772CDABA513678D1C30849656F9CADF88960BA311736F190F5A3C71E3FF6892B6F0196F2E5EF9037831C9D&token=&flag=%7B%22scenecode%22%3A%22outbound_invoice%22%2C%22sceneType%22%3A%221%22%2C%22from%22%3A%22MainAutoUseCard%22%2C%22experienceCode%22%3A%221761827515252%22%7D'
-    ]
-    
-    results = []
-    for url in demoSenceList:
-        try:
-            result = await test_single_scenario(browser, url)
-            results.append(result)
-        except Exception as e:
-            # 重新连接浏览器
-            browser = await create_browser()
-            await browser.start()
-            result = {'scenario': url, 'success': False, 'errors': [str(e)]}
-            results.append(result)
+]
 
-    # 输出测试报告
-    print_test_report(results)
-    
-
-if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    finally:
-        # 程序结束时关闭浏览器
-        close_browser()
