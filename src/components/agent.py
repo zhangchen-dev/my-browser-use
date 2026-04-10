@@ -5,6 +5,7 @@ from browser_use.browser.events import ScreenshotEvent
 from dotenv import load_dotenv
 import os
 import subprocess
+import json
 
 
 load_dotenv()  # 加载环境变量
@@ -55,6 +56,112 @@ def create_tools():
         return ActionResult(
             extracted_content=f'已切换到演示中心列表页，当前URL: {current_url}，请在此页面继续执行任务'
         )
+
+    @tools.action(description='从sessionStorage中读取演示配置，根据当前步骤获取需要点击的元素选择器')
+    async def get_next_click_element_from_config(browser_session: BrowserSession) -> ActionResult:
+        """
+        从sessionStorage中读取xft-autouse-plugin-demo-config配置，
+        根据currentStep字段找到对应的clickSelector，并返回该选择器
+        """
+        try:
+            # 执行JavaScript从sessionStorage中获取配置
+            js_code = """
+            try {
+                const configStr = sessionStorage.getItem('xft-autouse-plugin-demo-config');
+                if (!configStr) {
+                    return JSON.stringify({error: 'No config found in sessionStorage'});
+                }
+                const config = JSON.parse(configStr);
+                const currentStep = config.currentStep;
+                
+                // 验证currentStep是否有效
+                if (!Array.isArray(currentStep) || currentStep.length !== 3) {
+                    return JSON.stringify({error: 'Invalid currentStep format'});
+                }
+                
+                // 检查是否是初始状态 [-1, -1, -1]
+                if (currentStep[0] === -1 && currentStep[1] === -1 && currentStep[2] === -1) {
+                    return JSON.stringify({message: 'Initial state, no element to click yet'});
+                }
+                
+                // 根据currentStep查找对应的配置
+                const modelIndex = currentStep[0];
+                const stepIndex = currentStep[1];
+                const subStepIndex = currentStep[2];
+                
+                if (modelIndex < 0 || modelIndex >= config.modelList.length) {
+                    return JSON.stringify({error: 'Invalid model index'});
+                }
+                
+                const model = config.modelList[modelIndex];
+                if (!model.stepList || stepIndex < 0 || stepIndex >= model.stepList.length) {
+                    return JSON.stringify({error: 'Invalid step index'});
+                }
+                
+                const step = model.stepList[stepIndex];
+                if (!step.subStepList || subStepIndex < 0 || subStepIndex >= step.subStepList.length) {
+                    return JSON.stringify({error: 'Invalid sub-step index'});
+                }
+                
+                const subStep = step.subStepList[subStepIndex];
+                const clickSelector = subStep.selector?.clickSelector;
+                const clickSelectorType = subStep.selector?.clickSelectorType;
+                const title = subStep.title || subStep.mainTitle || '';
+                
+                return JSON.stringify({
+                    clickSelector: clickSelector,
+                    clickSelectorType: clickSelectorType,
+                    title: title,
+                    currentStep: currentStep,
+                    success: true
+                });
+            } catch (error) {
+                return JSON.stringify({error: error.message});
+            }
+            """
+            
+            result = await browser_session.evaluate(js_code)
+            result_dict = json.loads(result)
+            
+            if 'error' in result_dict:
+                return ActionResult(
+                    extracted_content=f"❌ 从sessionStorage读取配置失败: {result_dict['error']}"
+                )
+            elif 'success' in result_dict and result_dict['success']:
+                click_selector = result_dict.get('clickSelector', '')
+                selector_type = result_dict.get('clickSelectorType', '')
+                title = result_dict.get('title', '')
+                current_step = result_dict.get('currentStep', [])
+                
+                if click_selector:
+                    return ActionResult(
+                        extracted_content=f"✅ 找到下一步要点击的元素: '{title}' | 选择器类型: {selector_type} | 选择器: {click_selector} | 当前步骤: {current_step}"
+                    )
+                else:
+                    return ActionResult(
+                        extracted_content=f"⚠️ 当前步骤配置中没有找到clickSelector: {current_step}"
+                    )
+            else:
+                return ActionResult(
+                    extracted_content=f"ℹ️ {result_dict.get('message', 'Unknown status')}"
+                )
+                
+        except Exception as e:
+            return ActionResult(
+                extracted_content=f"❌ 执行JavaScript获取配置时出错: {str(e)}"
+            )
+    @tools.action(description='点击页面右下侧的"开始演示"按钮')
+    async def click_start_demo(browser_session: BrowserSession) -> ActionResult:
+        page = await browser_session.must_get_current_page()
+        
+        elements = await page.get_elements_by_css_selector('div[class*="DemoMap_startBtn"]')
+        
+        if not elements:
+            return ActionResult(extracted_content='未找到"开始演示"按钮')
+        
+        await elements[0].click()
+        return ActionResult(extracted_content='已成功点击"开始演示"按钮')
+
 
     return tools
 
@@ -146,4 +253,3 @@ def close_browser():
         asyncio.run(_GLOBAL_BROWSER_INSTANCE.kill())
         _GLOBAL_BROWSER_INSTANCE = None
         print("🧹 浏览器实例已关闭")
-    

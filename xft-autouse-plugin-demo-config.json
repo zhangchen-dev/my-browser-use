@@ -1,0 +1,758 @@
+{
+    "type": "3",
+    "currentStep": [
+        -1,
+        -1,
+        -1
+    ],
+    "caseCode": "digital_invoice_management",
+    "sceneCode": "input_invoice",
+    "sceneName": "进项发票管理",
+    "subSceneName": "",
+    "topic": "通用>数电发票高效合规管理>进项发票管理",
+    "finishDialogConfig": {
+        "finishDialogImg": "/inmapp/img/yanshizhongxinbanner.png",
+        "finishConfigBackText": "立即演示",
+        "finishConfigBackLink": "output_invoice",
+        "isChangeContext": true,
+        "nextSceneCode": "output_invoice",
+        "nextSceneName": "销项发票管理"
+    },
+    "modelList": [
+        {
+            "modelName": "一键获取数电票原件，实现发票合规管理",
+            "moduleCode": "CODE_0boFZRecwWiXM",
+            "modelDesc": "财政部要求企业归档含有数字签名的XML格式数电发票，某餐饮企业因缺失XML文件被罚款3万元。因此，财务部小张希望能通过系统一键获取员工报销的数电票原件。",
+            "isEnterprise": true,
+            "stepList": [
+                {
+                    "stepName": "完成取票服务授权",
+                    "stepQsTitle": "如何完成取票服务授权？",
+                    "stepQsDesc": "在系统设置-税局取票设置-取票服务授权，通过维护“法人税号+办税人信息”，快速授权取票服务。",
+                    "aiStepQsTitle": "如何完成取票服务授权？",
+                    "aiStepQsDesc": "在系统设置-税局取票设置-取票服务授权，通过维护“法人税号+办税人信息”，快速授权取票服务。",
+                    "subStepList": [
+                        {
+                            "mainTitle": "新增服务申请",
+                            "title": "新增服务申请，维护“法人税号+办税人信息”",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/service"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "authIncomeInvoicingServicesButton",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "authIncomeInvoicingServicesButton",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/service",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "完成取票服务授权",
+                            "title": "填写公司信息及办税人信息，快捷开通取票授权",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/service"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "submitAuthIncomeInvoicingServicesButton",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "submitAuthIncomeInvoicingServicesButton",
+                                "showNextStep": true,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inm5/#/inmapp/documentbilling/invoiceApply",
+                            "extendData": {}
+                        }
+                    ]
+                },
+                {
+                    "stepName": "完成一键取票",
+                    "stepQsTitle": "授权后如何一键取票？",
+                    "stepQsDesc": "手动/自动双模式选择，企业可以根据归档需求，灵活选择同步的票种和取票时间。",
+                    "aiStepQsTitle": "授权后如何一键取票？",
+                    "aiStepQsDesc": "手动/自动双模式选择，企业可以根据归档需求，灵活选择同步的票种和取票时间。",
+                    "subStepList": [
+                        {
+                            "mainTitle": "点击取票任务设置",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/fetchtask"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "IncomeFetchInvoiceSettingCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "IncomeFetchInvoiceSettingCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/fetchtask",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "根据企业需求完成取票设置",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/fetchtask"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SubmitIncomeFetchInvoiceSettingCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SubmitIncomeFetchInvoiceSettingCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/fetchtask",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "完成一键取票",
+                            "title": "支持自动取票/手动取票双模式",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/fetchtask"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "IncomeFetchInvoiceCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "IncomeFetchInvoiceCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/fetchtask",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "完成一键取票",
+                            "title": "确认取票信息",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/fetchtask"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SubmitIncomeFetchInvoiceCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SubmitIncomeFetchInvoiceCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/fetchtask",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "点击查看详情",
+                            "title": "取票调用税局接口，此处请等待几秒钟",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/fetchtask"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "IncomeFetchInvoiceDetailCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "IncomeFetchInvoiceDetailCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/fetchtask",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "查看发票同步记录详情",
+                            "title": "清晰查看进项和销项发票取票情况，包括发票张数、价税合计等信息",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/collection/fetchtask"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "IncomeFetchInvoiceDetailOkCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "IncomeFetchInvoiceDetailOkCls",
+                                "showNextStep": true,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/collection/fetchtask",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "通过发票台账查看详情",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceManage"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "incomeListInvoiceCodeRowCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "incomeListInvoiceCodeRowCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceManage",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "查看发票信息及影像",
+                            "title": "系统会标记已验真、税局原件字样，支持导出PDF/OFD/XML格式文件",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceManage"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "incomeListInvoiceDetailIconCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "incomeListInvoiceDetailIconCls",
+                                "showNextStep": true,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "bottom",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceManage",
+                            "extendData": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "modelName": "入账标识自动同步，降低红冲风险",
+            "moduleCode": "CODE_biYINBrVefXhJ",
+            "modelDesc": "当收票方未入账或未抵扣时，开票方可直接红冲数电发票，增加收票方风险。薪福通支持自动同步发票入账标识至税局，防止误红冲，降低企业税务风险。",
+            "isEnterprise": true,
+            "stepList": [
+                {
+                    "stepName": "筛选需要标记入账的发票",
+                    "stepQsTitle": "如何灵活设置入账规则？",
+                    "stepQsDesc": "企业可以根据管理需要，联动业务系统（如费控、ERP等），通过获取的发票类型、发票使用状态、采集状态等维度筛选要标记入账的发票，提高标记的准确率",
+                    "aiStepQsTitle": "如何灵活设置入账规则？",
+                    "aiStepQsDesc": "企业可以根据管理需要，联动业务系统（如费控、ERP等），通过获取的发票类型、发票使用状态、采集状态等维度筛选要标记入账的发票，提高标记的准确率",
+                    "subStepList": [
+                        {
+                            "mainTitle": "模式1：完成自动入账规则设置",
+                            "title": "支持自动入账/手动筛选入账双模式，自动入账支持设置适用企业、发票范围、入账频次等",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/depositSetting"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SaveDepositSettingsButtonCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SaveDepositSettingsButtonCls",
+                                "showNextStep": true,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/depositSetting",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "模式2：根据采集、使用、入账状态等维度手工标记",
+                            "title": "点击漏斗标志可以筛选",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "filterUsedStatusIconCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "filterUsedStatusIconCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "选择使用状态为“已使用”",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "usedStatusCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "usedStatusCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "点击“确定”",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "clickTofilterUsedStatusCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "clickTofilterUsedStatusCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        }
+                    ]
+                },
+                {
+                    "stepName": "完成入账标记",
+                    "stepQsTitle": "如何降低红冲风险？ ",
+                    "stepQsDesc": "手动标记入账后，将发票入账状态自动同步至税局，防止开票方误红冲。 ",
+                    "aiStepQsTitle": "如何降低红冲风险？ ",
+                    "aiStepQsDesc": "手动标记入账后，将发票入账状态自动同步至税局，防止开票方误红冲。 ",
+                    "subStepList": [
+                        {
+                            "mainTitle": "点击勾选待入账数据",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "checkFirstChoiceCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "checkFirstChoiceCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "勾选发票后点击提交入账",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SubmitDepositButtonCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SubmitDepositButtonCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "确认入账状态和入账时间，点击确定",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "sureSubmitDepositCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "sureSubmitDepositCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "点击税局入账标识",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "invoiceDepositSelect",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "invoiceDepositSelect .ant-select-selector",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "点击“已入账（企业所得税税前扣除）”",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "entryFlagOptionsOfDeposit",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "entryFlagOptionsOfDeposit",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {
+                                "stepTrigger": [
+                                    {
+                                        "selector": "invoiceDepositSelect .ant-select-selector",
+                                        "eventType": "click"
+                                    },
+                                    {
+                                        "selector": "invoiceDepositSelect .ant-select-selector",
+                                        "eventType": "mousedown"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "mainTitle": "查看入账结果",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/invoiceDeposit"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "checkDepositResultCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "checkDepositResultCls",
+                                "showNextStep": true,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/invoiceDeposit",
+                            "extendData": {}
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "modelName": "业财联动，提高抵扣认证效率",
+            "moduleCode": "CODE_F9GovjT7lsMQo",
+            "modelDesc": "为降低企业税负，企业需根据税局格式要求，定时在税务系统导入发票台账进行抵扣认证，工作量较大。薪福通支持多维筛选，快速勾选需抵扣的发票，提高工作效率。",
+            "isEnterprise": true,
+            "stepList": [
+                {
+                    "stepName": "完成抵扣勾选",
+                    "stepQsTitle": "如何进行抵扣勾选？",
+                    "stepQsDesc": "满足企业个性化筛选需求，支持多字段如发票号码、代码、使用状态、采集状态筛选查询后勾选发票",
+                    "aiStepQsTitle": "如何进行抵扣勾选？",
+                    "aiStepQsDesc": "满足企业个性化筛选需求，支持多字段如发票号码、代码、使用状态、采集状态筛选查询后勾选发票",
+                    "subStepList": [
+                        {
+                            "mainTitle": "点击勾选待抵扣发票",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "checkFirstChoiceCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "checkFirstChoiceCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "勾选待抵扣发票，点击提交勾选",
+                            "title": "企业可以根据发票类型、发票状态、使用状态等维度进行筛选",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SubmitDedutionButtonCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SubmitDedutionButtonCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "核对信息，点击“确认提交”",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "submitInvoiceDedutionButtonSureCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "submitInvoiceDedutionButtonSureCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "点击“统计确认tab”进行统计确认",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "ClickToSumSureTabCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "ClickToSumSureTabCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "点击申请统计",
+                            "title": "",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SubmitApplySumsButtonCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SubmitApplySumsButtonCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "提交勾选后，财务人员可以在线进行统计确认",
+                            "title": "支持撤销统计及导出发票清单",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "sureApplySumDedutionButtonCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "sureApplySumDedutionButtonCls",
+                                "showNextStep": false,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        },
+                        {
+                            "mainTitle": "完成统计确认",
+                            "title": "确认后，当前统计表将作为申报的依据",
+                            "guideCode": "digital_invoice_management",
+                            "url": [
+                                "/inc5/#/inmapp/income/deduction"
+                            ],
+                            "selector": {
+                                "placeSelectorType": "ClassName",
+                                "placeSelector": "SubmitSureSumsButtonCls",
+                                "placeClassStyle": "border: 2px dashed #fd8d22;",
+                                "clickSelectorType": "ClassName",
+                                "clickSelector": "SubmitSureSumsButtonCls",
+                                "showNextStep": true,
+                                "lastStepUnshowEndText": true,
+                                "isMobileGuide": false,
+                                "scrollIntoView": false
+                            },
+                            "position": "top",
+                            "isAutoNextStep": false,
+                            "allowClick": false,
+                            "linkUrl": "/inc5/#/inmapp/income/deduction",
+                            "extendData": {}
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "mapClose": false,
+    "sceneStoryShow": true,
+    "stepState": "0",
+    "aiMode": false,
+    "aiWelcomeSpeech": "",
+    "showNextStep": true,
+    "unSupportBackStep": false
+}
