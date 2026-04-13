@@ -17,7 +17,14 @@ _GLOBAL_BROWSER_INSTANCE = None
 
 
 def create_llm():
-    return ChatOpenAI(model='Qwen/Qwen3.5-397B-A17B')
+    """创建并返回LLM实例"""
+    # 使用硅基流动的Qwen-VL模型（多模态）
+    return ChatOpenAI(
+        model='Qwen/Qwen3-VL-32B-Instruct'  # 硅基流动上的正确多模态模型名称
+    )
+    
+    # 如果需要使用Browser Use，可以取消注释下面的代码：
+    # return ChatBrowserUse()
 
 
 def create_tools():
